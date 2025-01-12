@@ -16,4 +16,12 @@ public abstract class Publication {
     private String title;
     private String year;
     private String publisher;
+
+    public Publication() {}
+
+    public Publication( String title, String year, String publisher) {
+        this.title = title;
+        this.year = year;
+        this.publisher = publisher;
+    }
 }
