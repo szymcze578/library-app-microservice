@@ -1,14 +1,12 @@
 spring:
   application:
     name: Library
-  config:
-    import: optional:classpath:env.properties
   messages:
     basename: messages
   datasource:
-    url: jdbc:postgresql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:postgresql://library-db:5432/Library
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -18,14 +16,6 @@ spring:
       hibernate:
         format_sql: true
     database: postgresql
-  data:
-    web:
-      pageable:
-        default-page-size: 10
-        max-page-size: 100
-  web:
-    resources:
-      add-mappings: false
 
 management:
   endpoints:
