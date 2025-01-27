@@ -1,6 +1,7 @@
 package org.example.project.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -13,8 +14,13 @@ public abstract class Publication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotNull(message = "Title can not be empty")
     private String title;
+
+    @NotNull(message = "Year can not be empty")
     private String year;
+
+    @NotNull(message = "Publisher can not be empty")
     private String publisher;
 
     public Publication() {}

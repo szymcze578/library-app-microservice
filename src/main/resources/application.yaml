@@ -4,7 +4,7 @@ spring:
   messages:
     basename: messages
   datasource:
-    url: jdbc:postgresql://library-db:5432/Library
+    url: jdbc:postgresql://localhost:5432/Library
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -16,6 +16,10 @@ spring:
       hibernate:
         format_sql: true
     database: postgresql
+
+server:
+  error:
+    include-message: always
 
 management:
   endpoints:

@@ -26,20 +26,19 @@ public class PublicationService {
         this.modelMapper = modelMapper;
     }
 
-    public void addPublication(PublicationDTO publicationDTO) {
-        ifPublicationExist(publicationDTO);
+    public PublicationDTO addPublication(PublicationDTO publicationDTO) {
+        if (!publicationExist(publicationDTO)){
+           throw new PublicationAlreadyExistException("Publication already exist " + publicationDTO.getTitle());
+        }
         Publication publication = switch (PublicationType.fromValue(publicationDTO.getType())) {
             case BOOK -> modelMapper.map(publicationDTO, Book.class);
             case MAGAZINE -> modelMapper.map(publicationDTO, Magazine.class);
         };
-        publicationRepository.save(publication);
+        return modelMapper.map(publicationRepository.save(publication), PublicationDTO.class);
     }
 
-    private void ifPublicationExist(PublicationDTO publication) {
-        publicationRepository.findPublicationByTitle(publication.getTitle())
-                .ifPresent(result -> {
-                    throw new PublicationAlreadyExistException("Publication already exists: " + publication.getTitle());
-                });
+    private boolean publicationExist(PublicationDTO publication) {
+        return publicationRepository.findPublicationByTitle(publication.getTitle()).isPresent();
     }
 
     public List<PublicationDTO> getAllPublications() {

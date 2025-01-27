@@ -27,13 +27,9 @@ public class PublicationController {
     }
 
     @PostMapping("/addPublication")
-    public ResponseEntity<String> addPublication(@RequestBody PublicationDTO publication) {
-        try{
-            publicationService.addPublication(publication);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Successfully added publication " + publication.getTitle());
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    public ResponseEntity<PublicationDTO> addPublication(@RequestBody PublicationDTO publication) {
+        PublicationDTO result = publicationService.addPublication(publication);
+        return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 
     @GetMapping("/getPublications")
