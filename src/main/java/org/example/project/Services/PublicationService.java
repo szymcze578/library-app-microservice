@@ -27,7 +27,7 @@ public class PublicationService {
     }
 
     public PublicationDTO addPublication(PublicationDTO publicationDTO) {
-        if (!publicationExist(publicationDTO)){
+        if (publicationExist(publicationDTO)){
            throw new PublicationAlreadyExistException("Publication already exist " + publicationDTO.getTitle());
         }
         Publication publication = switch (PublicationType.fromValue(publicationDTO.getType())) {
