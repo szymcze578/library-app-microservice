@@ -15,8 +15,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -31,8 +34,25 @@ public class PublicationServiceTest {
     @InjectMocks
     private PublicationService publicationService;
 
+    private Publication book;
+    private Publication magazine;
+
+
     @BeforeEach
     public void setUp(){
+        book = new Book("The Hobbit 2",
+                "1937",
+                "George Allen & Unwin",
+                "J.R.R. Tolkien",
+                310,
+                "978-0547928227");
+
+        magazine = new Magazine(
+                "F1 esports",
+                "2023",
+                "F1 limited",
+                "12.10",
+                "PL");
         MockitoAnnotations.openMocks(this);
     }
 
@@ -107,4 +127,86 @@ public class PublicationServiceTest {
         // Verify that the save method was NOT called
         verify(publicationRepository, never()).save(any());
     }
+
+    @Test
+    public void testGetPublications(){
+
+        // Mock DTOs
+        PublicationDTO bookDTO = new PublicationDTO();
+        bookDTO.setTitle("The Hobbit 2");
+        bookDTO.setType("Book");
+        PublicationDTO magazineDTO = new PublicationDTO();
+        magazineDTO.setTitle("F1 esports");
+        magazineDTO.setType("Magazine");
+
+        // Mock ModelMapper behavior
+        when(modelMapper.map(book, PublicationDTO.class)).thenReturn(bookDTO);
+        when(modelMapper.map(magazine, PublicationDTO.class)).thenReturn(magazineDTO);
+
+        // Arrange
+        List<Publication> publications = List.of(book, magazine);
+        when(publicationRepository.findAll()).thenReturn(publications);
+        System.out.println(publications);
+
+        // Act
+        List<PublicationDTO> result = publicationService.getAllPublications();
+        System.out.println(result);
+
+        // Assert
+        assertEquals(2, result.size());
+
+        // Check first publication (Book)
+        assertEquals("The Hobbit 2", result.get(0).getTitle());
+        assertEquals("Book", result.get(0).getType());
+
+        // Check second publication (Magazine)
+        assertEquals("F1 esports", result.get(1).getTitle());
+        assertEquals("Magazine", result.get(1).getType());
+
+        // Verify repository interaction
+        verify(publicationRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testGetBooks(){
+        PublicationDTO bookDTO = new PublicationDTO();
+        bookDTO.setTitle("The Hobbit 2");
+        bookDTO.setType("Book");
+
+        // Mock ModelMapper behavior
+        when(modelMapper.map(book, PublicationDTO.class)).thenReturn(bookDTO);
+
+        // Arrange
+        List<Book> books = List.of((Book)book);
+        when(publicationRepository.findBooks()).thenReturn(books);
+
+        // Act
+        List<PublicationDTO> result = publicationService.getBooks();
+
+        assertEquals(1, result.size());
+        assertEquals("The Hobbit 2", result.getFirst().getTitle());
+        assertEquals("Book", result.getFirst().getType());
+
+        verify(publicationRepository, times(1)).findBooks();
+    }
+
+    @Test
+    public void testGetMagazines(){
+        PublicationDTO magazineDTO = new PublicationDTO();
+        magazineDTO.setTitle("F1 esports");
+        magazineDTO.setType("Magazine");
+
+        when(modelMapper.map(magazine, PublicationDTO.class)).thenReturn(magazineDTO);
+        List<Magazine> magazines = List.of((Magazine) magazine);
+        when(publicationRepository.findMagazines()).thenReturn(magazines);
+
+        List<PublicationDTO> result = publicationService.getMagazines();
+
+        assertEquals(1, result.size());
+        assertEquals("F1 esports", result.getFirst().getTitle());
+        assertEquals("Magazine", result.getFirst().getType());
+
+        verify(publicationRepository, times(1)).findMagazines();
+    }
+
 }
