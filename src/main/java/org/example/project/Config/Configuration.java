@@ -1,7 +1,7 @@
 package org.example.project.Config;
 
-import org.example.project.Model.Book;
-import org.example.project.Model.Magazine;
+import org.example.project.Domain.Model.Book;
+import org.example.project.Domain.Model.Magazine;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.example.project.Model.PublicationDTO;

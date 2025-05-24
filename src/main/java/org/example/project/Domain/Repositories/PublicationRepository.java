@@ -1,8 +1,8 @@
-package org.example.project.Repositories;
+package org.example.project.Domain.Repositories;
 
-import org.example.project.Model.Book;
-import org.example.project.Model.Magazine;
-import org.example.project.Model.Publication;
+import org.example.project.Domain.Model.Book;
+import org.example.project.Domain.Model.Magazine;
+import org.example.project.Domain.Model.Publication;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,17 +1,22 @@
-package org.example.project.Model;
+package org.example.project.Domain.Model;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Setter
 @Getter
 @Entity
 @NoArgsConstructor
+@SuperBuilder
 @AllArgsConstructor
-@Table(name = "books")
-public class Book extends Publication{
+@Table(name = "book")
+public class Book extends Publication {
     private String author;
     private int pages;
     private String isbn;

@@ -1,12 +1,13 @@
-package org.example.project.Model;
+package org.example.project.Domain.Model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @Entity
-@Table(name = "publications")
+@SuperBuilder
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Publication {
 

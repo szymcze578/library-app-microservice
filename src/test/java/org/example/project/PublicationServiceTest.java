@@ -1,13 +1,12 @@
 package org.example.project;
 
 import org.example.project.Exceptions.PublicationAlreadyExistException;
-import org.example.project.Model.Book;
-import org.example.project.Model.Magazine;
-import org.example.project.Model.Publication;
+import org.example.project.Domain.Model.Book;
+import org.example.project.Domain.Model.Magazine;
+import org.example.project.Domain.Model.Publication;
 import org.example.project.Model.PublicationDTO;
-import org.example.project.Repositories.PublicationRepository;
+import org.example.project.Domain.Repositories.PublicationRepository;
 import org.example.project.Services.PublicationService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -15,7 +14,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 

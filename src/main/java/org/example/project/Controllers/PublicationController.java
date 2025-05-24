@@ -1,17 +1,11 @@
 package org.example.project.Controllers;
 
-import org.example.project.Model.Book;
-import org.example.project.Model.Magazine;
-import org.example.project.Model.Publication;
 import org.example.project.Model.PublicationDTO;
-import org.example.project.Repositories.PublicationRepository;
 import org.example.project.Services.PublicationService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
