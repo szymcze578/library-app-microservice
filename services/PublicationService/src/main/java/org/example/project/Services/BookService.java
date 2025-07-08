@@ -5,6 +5,7 @@ import org.example.project.Domain.Model.Book;
 import org.example.project.Domain.Repositories.BookRepository;
 import org.example.project.Exceptions.PublicationAlreadyExistException;
 import org.example.project.Exceptions.PublicationNotFoundException;
+import org.example.project.Interfaces.IBookService;
 import org.example.project.Mappers.BookMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BookService {
+public class BookService implements IBookService {
 
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;

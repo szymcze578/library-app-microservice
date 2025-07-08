@@ -1,11 +1,12 @@
 package org.example.project;
 
-import org.example.project.Exceptions.PublicationAlreadyExistException;
+
 import org.example.project.Domain.Model.Book;
 import org.example.project.Domain.Model.Magazine;
 import org.example.project.Domain.Model.Publication;
-import org.example.project.Model.PublicationDTO;
 import org.example.project.Domain.Repositories.PublicationRepository;
+import org.example.project.Exceptions.PublicationAlreadyExistException;
+import org.example.project.Model.PublicationDTO;
 import org.example.project.Services.PublicationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -182,8 +183,8 @@ public class PublicationServiceTest {
         List<PublicationDTO> result = publicationService.getBooks();
 
         assertEquals(1, result.size());
-        assertEquals("The Hobbit 2", result.getFirst().getTitle());
-        assertEquals("Book", result.getFirst().getType());
+        assertEquals("The Hobbit 2", result.get(0).getTitle());
+        assertEquals("Book", result.get(0).getType());
 
         verify(publicationRepository, times(1)).findBooks();
     }
@@ -201,8 +202,8 @@ public class PublicationServiceTest {
         List<PublicationDTO> result = publicationService.getMagazines();
 
         assertEquals(1, result.size());
-        assertEquals("F1 esports", result.getFirst().getTitle());
-        assertEquals("Magazine", result.getFirst().getType());
+        assertEquals("F1 esports", result.get(0).getTitle());
+        assertEquals("Magazine", result.get(0).getType());
 
         verify(publicationRepository, times(1)).findMagazines();
     }

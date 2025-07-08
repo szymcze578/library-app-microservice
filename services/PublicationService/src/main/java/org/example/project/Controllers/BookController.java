@@ -3,6 +3,7 @@ package org.example.project.Controllers;
 import jakarta.validation.Valid;
 import org.example.project.DataTransferObjects.BookDto;
 import org.example.project.Domain.Model.Book;
+import org.example.project.Interfaces.IBookService;
 import org.example.project.Services.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    private final BookService bookService;
+    private final IBookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
