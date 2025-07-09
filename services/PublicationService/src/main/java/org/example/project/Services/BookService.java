@@ -1,12 +1,12 @@
 package org.example.project.Services;
 
-import org.example.project.DataTransferObjects.BookDto;
 import org.example.project.Domain.Model.Book;
 import org.example.project.Domain.Repositories.BookRepository;
 import org.example.project.Exceptions.PublicationAlreadyExistException;
 import org.example.project.Exceptions.PublicationNotFoundException;
 import org.example.project.Interfaces.IBookService;
 import org.example.project.Mappers.BookMapper;
+import org.example.project.DataTransferObjects.BookViewModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,17 +23,24 @@ public class BookService implements IBookService {
         this.bookMapper = bookMapper;
     }
 
-    public List<BookDto> getBooks() {
+    public List<BookViewModel> getBooks() {
         return bookRepository.findAll()
                 .stream()
-                .map(bookMapper::toBookDto).collect(Collectors.toList());
+                .map(bookMapper::map).collect(Collectors.toList());
     }
 
-    public Long addBook(BookDto request) {
+    public BookViewModel getBookById(Long bookId){
+        return bookRepository.findById(bookId)
+                .map(bookMapper::map)
+                .orElseThrow(
+                        ()-> new PublicationNotFoundException("Book with this ID doesn't exist ID::" + bookId));
+    }
+
+    public Long addBook(BookViewModel request) {
         bookRepository.findByIsbn(request.isbn()).ifPresent(book -> {
             throw new PublicationAlreadyExistException("Book with ISBN already exists: " + request.isbn());
         });
-        Book book = bookMapper.toBook(request);
+        Book book = bookMapper.map(request);
         return bookRepository.save(book).getId();
     }
 
@@ -43,5 +50,35 @@ public class BookService implements IBookService {
                         book -> bookRepository.deleteById(book.getId()),
                         () -> {throw new PublicationNotFoundException("Book with this ID doesn't exist ID::" + id);}
                 );
+    }
+
+    public BookViewModel updateBook(BookViewModel request) {
+        var book = bookRepository.findById(request.id())
+                .orElseThrow(
+                        ()-> new PublicationNotFoundException("Book with this ID doesn't exist ID::" + request.id()));
+        book = mergeBook(book, request);
+        return bookMapper.map(bookRepository.save(book));
+    }
+
+    private Book mergeBook(Book book, BookViewModel request) {
+        if(!request.title().isBlank()){
+            book.setTitle(request.title());
+        }
+        if(!request.year().isBlank()){
+            book.setYear(request.year());
+        }
+        if(!request.publisher().isBlank()){
+            book.setPublisher(request.publisher());
+        }
+        if(!request.author().isBlank()){
+            book.setAuthor(request.author());
+        }
+        if(!(request.pages() > 0) ){
+            book.setPages(request.pages());
+        }
+        if(!request.isbn().isBlank()){
+            book.setIsbn(request.isbn());
+        }
+        return book;
     }
 }

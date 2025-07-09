@@ -2,9 +2,8 @@ package org.example.project.DataTransferObjects;
 
 import jakarta.validation.constraints.NotNull;
 
-public record BookDto(
-        Long id,
-
+public record BookViewModel(
+        long id,
         @NotNull(message = "Title is required.")
         String title,
         @NotNull(message = "Year is required.")

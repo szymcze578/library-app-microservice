@@ -1,12 +1,19 @@
 package org.example.project.Interfaces;
 
-import org.example.project.DataTransferObjects.BookDto;
+import jakarta.validation.Valid;
+import org.example.project.DataTransferObjects.BookViewModel;
 
 import java.util.List;
 
 public interface IBookService {
 
-    List<BookDto> getBooks();
-    Long addBook(BookDto request);
+    List<BookViewModel> getBooks();
+
+    Long addBook(BookViewModel request);
+
     void deleteBook(Long id);
+
+    BookViewModel updateBook(BookViewModel request);
+
+    BookViewModel getBookById(Long bookId);
 }

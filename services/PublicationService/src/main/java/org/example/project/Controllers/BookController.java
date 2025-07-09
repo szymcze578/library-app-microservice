@@ -1,9 +1,8 @@
 package org.example.project.Controllers;
 
 import jakarta.validation.Valid;
-import org.example.project.DataTransferObjects.BookDto;
-import org.example.project.Domain.Model.Book;
 import org.example.project.Interfaces.IBookService;
+import org.example.project.DataTransferObjects.BookViewModel;
 import org.example.project.Services.BookService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +20,29 @@ public class BookController {
     }
 
     @GetMapping("/getBooks")
-    public ResponseEntity<List<BookDto>> getBooks(){
+    public ResponseEntity<List<BookViewModel>> getBooks(){
         return ResponseEntity.ok(bookService.getBooks());
     }
 
+    @GetMapping("/{book-id}")
+    public ResponseEntity<BookViewModel> getBookById(@PathVariable("book-id") Long bookId){
+        return ResponseEntity.ok(bookService.getBookById(bookId));
+    }
+
     @PostMapping("/addBook")
-    public ResponseEntity<Long> addBook(@RequestBody @Valid BookDto request){
+    public ResponseEntity<Long> addBook(@RequestBody @Valid BookViewModel request){
         return ResponseEntity.ok(bookService.addBook(request));
     }
 
-    @DeleteMapping("/deleteBook")
-    public ResponseEntity<?> deleteBook(@RequestParam("book-id") Long id){
+    @DeleteMapping("/{book-id}")
+    public ResponseEntity<?> deleteBook(@PathVariable("book-id") Long id){
         bookService.deleteBook(id);
         return ResponseEntity.accepted().build();
+    }
+
+    @PutMapping("/updateBook")
+    public ResponseEntity<BookViewModel> updateBook(@RequestBody @Valid BookViewModel request){
+        return ResponseEntity.ok(bookService.updateBook(request));
     }
 
 }

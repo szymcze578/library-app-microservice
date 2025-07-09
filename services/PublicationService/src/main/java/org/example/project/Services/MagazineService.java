@@ -1,10 +1,10 @@
 package org.example.project.Services;
 
-import org.example.project.DataTransferObjects.MagazineDto;
+import org.example.project.DataTransferObjects.MagazineViewModel;
 import org.example.project.Domain.Model.Magazine;
 import org.example.project.Domain.Repositories.MagazineRepository;
-import org.example.project.Exceptions.PublicationAlreadyExistException;
 import org.example.project.Exceptions.PublicationNotFoundException;
+import org.example.project.Interfaces.IMagazineService;
 import org.example.project.Mappers.MagazineMapper;
 import org.springframework.stereotype.Service;
 
@@ -12,23 +12,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MagazineService {
+public class MagazineService implements IMagazineService {
+
     private final MagazineRepository magazineRepository;
     private final MagazineMapper magazineMapper;
+
     public MagazineService(MagazineRepository magazineRepository, MagazineMapper magazineMapper) {
         this.magazineRepository = magazineRepository;
         this.magazineMapper = magazineMapper;
     }
 
-    public List<MagazineDto> getAllMagazines() {
+    public List<MagazineViewModel> getAllMagazines() {
         return magazineRepository.findAll()
                 .stream()
-                .map(magazineMapper::toMagazineDto)
+                .map(magazineMapper::map)
                 .collect(Collectors.toList());
     }
 
-    public Long addMagazine(MagazineDto request) {
-        magazineRepository.save(magazineMapper.toMagazine(request));
+    public Long addMagazine(MagazineViewModel request) {
+        magazineRepository.save(magazineMapper.map(request));
         return null;
     }
 
@@ -39,16 +41,16 @@ public class MagazineService {
         );
     }
 
-    public MagazineDto updateMagazine(MagazineDto request) {
+    public MagazineViewModel updateMagazine(MagazineViewModel request) {
         var magazine  = magazineRepository.findById(request.id())
                 .orElseThrow(
                         () -> new PublicationNotFoundException("Magazine with this ID doesn't exist ID::" + request.id()));
         magazine = mergeMagazine(magazine, request);
         magazineRepository.save(magazine);
-        return magazineMapper.toMagazineDto(magazine);
+        return magazineMapper.map(magazine);
     }
 
-    private Magazine mergeMagazine(Magazine magazine, MagazineDto request) {
+    private Magazine mergeMagazine(Magazine magazine, MagazineViewModel request) {
         if(!request.title().isBlank()){
             magazine.setTitle(request.title());
         }

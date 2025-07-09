@@ -1,8 +1,7 @@
 package org.example.project.Controllers;
 
 import jakarta.validation.Valid;
-import org.example.project.DataTransferObjects.MagazineDto;
-import org.example.project.Domain.Model.Magazine;
+import org.example.project.DataTransferObjects.MagazineViewModel;
 import org.example.project.Services.MagazineService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,12 @@ public class MagazineController {
     }
 
     @GetMapping("/getMagazines")
-    public ResponseEntity<List<MagazineDto>> getAllMagazines(){
+    public ResponseEntity<List<MagazineViewModel>> getAllMagazines(){
         return ResponseEntity.ok(magazineService.getAllMagazines());
     }
 
     @PostMapping("/addMagazine")
-    public ResponseEntity<Long> addMagazine(@RequestBody @Valid MagazineDto request){
+    public ResponseEntity<Long> addMagazine(@RequestBody @Valid MagazineViewModel request){
         return ResponseEntity.ok(magazineService.addMagazine(request));
     }
 
@@ -36,7 +35,7 @@ public class MagazineController {
     }
 
     @PutMapping("updateMagazine")
-    public ResponseEntity<MagazineDto> updateMagazine(@RequestBody @Valid MagazineDto request){
+    public ResponseEntity<MagazineViewModel> updateMagazine(@RequestBody @Valid MagazineViewModel request){
         return ResponseEntity.ok(magazineService.updateMagazine(request));
     }
 }
