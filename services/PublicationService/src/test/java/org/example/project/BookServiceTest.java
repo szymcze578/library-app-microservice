@@ -1,18 +1,19 @@
 package org.example.project;
 
-import org.example.project.DataTransferObjects.BookViewModel;
-import org.example.project.Domain.Model.Book;
-import org.example.project.Domain.Repositories.BookRepository;
-import org.example.project.Exceptions.PublicationAlreadyExistException;
-import org.example.project.Exceptions.PublicationNotFoundException;
-import org.example.project.Mappers.BookMapper;
-import org.example.project.Services.BookService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.szymon.publicationservice.DataTransferObjects.BookViewModel;
+import org.szymon.publicationservice.Domain.Model.Book;
+import org.szymon.publicationservice.Domain.Repositories.BookRepository;
+import org.szymon.publicationservice.Exceptions.PublicationAlreadyExistException;
+import org.szymon.publicationservice.Exceptions.PublicationNotFoundException;
+import org.szymon.publicationservice.Mappers.BookMapper;
+import org.szymon.publicationservice.Services.BookService;
 
 import java.util.List;
 import java.util.Optional;

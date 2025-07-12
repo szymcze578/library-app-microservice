@@ -1,19 +1,19 @@
 package org.example.project;
 
 
-import org.example.project.DataTransferObjects.BookViewModel;
-import org.example.project.DataTransferObjects.Library.LibraryViewModel;
-import org.example.project.DataTransferObjects.MagazineViewModel;
-import org.example.project.Domain.Repositories.BookRepository;
-import org.example.project.Interfaces.IBookService;
-import org.example.project.Interfaces.IMagazineService;
-import org.example.project.Services.LibraryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.szymon.publicationservice.DataTransferObjects.BookViewModel;
+import org.szymon.publicationservice.DataTransferObjects.Library.LibraryViewModel;
+import org.szymon.publicationservice.DataTransferObjects.MagazineViewModel;
+import org.szymon.publicationservice.Domain.Repositories.BookRepository;
+import org.szymon.publicationservice.Interfaces.IBookService;
+import org.szymon.publicationservice.Interfaces.IMagazineService;
+import org.szymon.publicationservice.Services.LibraryService;
 
 import java.util.List;
 

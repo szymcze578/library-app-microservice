@@ -1,17 +1,17 @@
 package org.example.project;
 
-import org.example.project.DataTransferObjects.MagazineViewModel;
-import org.example.project.Domain.Model.Magazine;
-import org.example.project.Domain.Repositories.MagazineRepository;
-import org.example.project.Exceptions.PublicationNotFoundException;
-import org.example.project.Mappers.MagazineMapper;
-import org.example.project.Services.MagazineService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.szymon.publicationservice.DataTransferObjects.MagazineViewModel;
+import org.szymon.publicationservice.Domain.Model.Magazine;
+import org.szymon.publicationservice.Domain.Repositories.MagazineRepository;
+import org.szymon.publicationservice.Exceptions.PublicationNotFoundException;
+import org.szymon.publicationservice.Mappers.MagazineMapper;
+import org.szymon.publicationservice.Services.MagazineService;
 
 import java.util.List;
 import java.util.Optional;
