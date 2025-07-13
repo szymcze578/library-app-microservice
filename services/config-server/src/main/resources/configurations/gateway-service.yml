@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: publication-service
+          uri: lb://publication-service
+          predicates:
+            - Path=/api/v1/books/**, /api/v1/magazines/**
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+
+server:
+  port: 8080
