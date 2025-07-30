@@ -1,10 +1,14 @@
 package org.szymon.user.Domain.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@Validated
 @Entity(name = "roles")
 public class Role {
     @Id

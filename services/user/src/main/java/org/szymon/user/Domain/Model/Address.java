@@ -2,11 +2,13 @@ package org.szymon.user.Domain.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
 @Data
 @Entity(name = "addresses")
+@Validated
 public class Address {
 
     @Id

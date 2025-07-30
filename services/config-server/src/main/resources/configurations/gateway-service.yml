@@ -9,6 +9,10 @@ spring:
           uri: lb://publication-service
           predicates:
             - Path=/api/v1/books/**, /api/v1/magazines/**
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/users/**
 
 logging:
   level:

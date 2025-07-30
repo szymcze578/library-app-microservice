@@ -14,16 +14,5 @@ public class PublicationApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner commandLineRunner (JdbcConnectionDetails jdbc){
-		return args -> {
-			String classDetails = jdbc.getClass().getName();
-			String url = jdbc.getJdbcUrl();
-			String username = jdbc.getUsername();
-			String password = jdbc.getPassword();
 
-			String detail =  classDetails + "\n JDBC url: " + url + "\n Username: " + username + "\n Password: " + password;
-			System.out.println(detail);
-		};
-	}
 }
