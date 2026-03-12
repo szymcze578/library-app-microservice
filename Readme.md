@@ -43,5 +43,5 @@ Benefits of this architecture:
 The system follows a **microservice architecture** where services communicate via REST APIs.
 
 <p align="center">
-  <img src="Diagrams/LibraryMicroservice.drawio.svg" alt="Library Microservices Architecture"/>
+  <img src="Diagrams/LibraryMicroservice.svg" alt="Library Microservices Architecture"/>
 </p>
