@@ -10,6 +10,4 @@ public class PublicationApplication {
 		SpringApplication.run(PublicationApplication.class, args);
 	}
 
-
-
 }
