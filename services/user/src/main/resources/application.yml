@@ -3,3 +3,7 @@ spring:
         import: optional:configserver:http://localhost:8888
     application:
         name: user-service
+
+jwt:
+    secret: 'AKPlSAdw09exkfBAlJjxzXMu9FLtntQd7tgYt8SHHpM='
+    expiration: 86400
