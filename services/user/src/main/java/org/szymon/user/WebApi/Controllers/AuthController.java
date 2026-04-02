@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.szymon.user.Domain.Model.User;
 import org.szymon.user.Infrastucture.Services.AuthService;
 import org.szymon.user.Security.Jwt.JwtTokenProvider;
+import org.szymon.user.Security.Model.AuthResponse;
 import org.szymon.user.WebApi.DataTransferObjects.LoginRequest;
 import org.szymon.user.WebApi.DataTransferObjects.RegisterRequest;
 
@@ -49,44 +50,15 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest)
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest)
     {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            loginRequest.username(),
-                            loginRequest.password())
-            );
-
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String jwt = jwtTokenProvider.generateToken(userDetails);
-
-            return ResponseEntity.ok(jwt);
-
-        } catch (BadCredentialsException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body("Invalid username or password");
-        }
+        AuthResponse authResponse = authService.login(loginRequest);
+        return ResponseEntity.ok(authResponse);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
-        try {
-            logger.info("Registration attempt for username: {}", registerRequest.username());
-
-            User newUser = authService.registerUser(
-                    registerRequest.username(),
-                    registerRequest.password(),
-                    registerRequest.email()
-            );
-
-            logger.info("User registered successfully: {}", registerRequest.username());
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(newUser.getId());
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+        User user = authService.registerUser(registerRequest.username(), registerRequest.password(), registerRequest.email());
+        return ResponseEntity.status(HttpStatus.CREATED).body(user.getId());
     }
 }

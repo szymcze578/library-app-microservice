@@ -1,13 +1,21 @@
 package org.szymon.user.Domain.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity(name = "users")
+@Validated
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

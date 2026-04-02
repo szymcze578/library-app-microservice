@@ -1,0 +1,13 @@
+<button (click)="checkUser()">Check User</button>
+
+@if (loading()) {
+  <div>Loading...</div>
+}
+
+@if (result()) {
+  <div>✅ Result: {{ result() }}</div>
+}
+
+@if (error()) {
+  <div>❌ Error: {{ error() }}</div>
+}

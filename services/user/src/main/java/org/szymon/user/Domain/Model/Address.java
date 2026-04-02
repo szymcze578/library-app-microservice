@@ -1,7 +1,10 @@
 package org.szymon.user.Domain.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
@@ -9,6 +12,9 @@ import java.util.List;
 @Data
 @Entity(name = "addresses")
 @Validated
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Address {
 
     @Id
