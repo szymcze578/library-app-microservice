@@ -1,18 +1,36 @@
 services:
   library-db:
-    image: postgres:latest
+    image: postgres:18
+    container_name: publications-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: Library
+      POSTGRES_DB: publications
     ports:
       - "8050:5432"
+    volumes:
+      - publications-db-data:/var/lib/postgresql
+    networks:
+      - library-net
 
   users-db:
-    image: postgres:latest
+    image: postgres:18
+    container_name: users-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: User
+      POSTGRES_DB: users
     ports:
       - "8051:5432"
+    volumes:
+      - users-db-data:/var/lib/postgresql
+    networks:
+      - library-net
+
+volumes:
+  publications-db-data:
+  users-db-data:
+
+networks:
+  library-net:
+    driver: bridge
