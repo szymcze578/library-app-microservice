@@ -6,4 +6,6 @@ import org.szymon.publication.Domain.Model.Magazine;
 
 @Repository
 public interface MagazineRepository extends JpaRepository<Magazine, Long> {
+
+    boolean existsByIssn(String isbn);
 }
