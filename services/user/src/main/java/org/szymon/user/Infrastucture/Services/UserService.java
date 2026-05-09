@@ -44,7 +44,7 @@ public class UserService implements IUserService {
         addressRepository.save(address);
 
         user.setAddress(address);
-        user.setUpdatedAt(LocalDateTime.now());
+        //user.setUpdatedAt(LocalDateTime.now());
         userRepository.save(user);
 
         return address;
