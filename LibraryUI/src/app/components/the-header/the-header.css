@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-btn {
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(253, 160, 41, 0.35);
+}
+
+.search-btn:hover {
+  background-color: #e8921e;
+}
+
+.nav-link {
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #fda029;
+}
+
+.login-btn {
+  transition: opacity 0.2s ease;
+}
+
+.login-btn:hover {
+  opacity: 0.88;
+}

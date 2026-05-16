@@ -1,57 +1,102 @@
-<div class="flex h-screen">
-  <div class="w-1/2 flex items-center justify-center">
-    <div class="flex flex-col max-w-101 gap-2.5">
-        <div class="flex text-[32px]">
-            Get Started Now
+<div class="flex min-h-screen">
+
+  <!-- Left panel: form -->
+  <div class="flex flex-col justify-center items-center w-full lg:w-[50%] px-8 py-12">
+    <div class="w-full max-w-100">
+
+      <h1 class="text-[32px] font-medium text-[#03081f] mb-7">Get Started Now</h1>
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+
+        <!-- Name -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[14px] font-medium text-[#03081f]">Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            placeholder="Enter your name"
+            class="h-11 border border-[#d9d9d9] rounded-[10px] px-4 text-[13px] text-[#03081f] placeholder:text-[#03081f]/40 outline-none focus:border-[#fda029] transition-colors"
+          />
         </div>
-        <div class="flex flex-col gap-1">
-            <span> Name </span>
-            <input class="border rounded-xs h-8 p-2"
-            [placeholder]="'Name'"/>
+
+        <!-- Email -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[14px] font-medium text-[#03081f]">Email address</label>
+          <input
+            formControlName="email"
+            type="email"
+            placeholder="Enter your email"
+            class="h-11 border border-[#d9d9d9] rounded-[10px] px-4 text-[13px] text-[#03081f] placeholder:text-[#03081f]/40 outline-none focus:border-[#fda029] transition-colors"
+          />
         </div>
-        <div class="flex flex-col gap-1">
-            <span> Email address</span>
-            <input class="border rounded-xs h-8 p-2"/>
-        </div> 
-        <div class="flex flex-col gap-1">
-            <span> Password</span>
-            <input class="border rounded-xs h-8 p-2"
-            [type]="'password'"/>
-         </div> 
+
+        <!-- Password -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-[14px] font-medium text-[#03081f]">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            placeholder="Enter your password"
+            class="h-11 border border-[#d9d9d9] rounded-[10px] px-4 text-[13px] text-[#03081f] placeholder:text-[#03081f]/40 outline-none focus:border-[#fda029] transition-colors"
+          />
+        </div>
+
+        <!-- Checkbox -->
+        <label class="flex items-center gap-2.5 cursor-pointer mt-1">
+          <input
+            formControlName="agreeTerms"
+            type="checkbox"
+            class="w-4 h-4 accent-[#fda029] cursor-pointer"
+          />
+          <span class="text-[13px] text-[#03081f]">
+            I agree to the
+            <a href="#" class="text-[#0f3dde] underline">terms &amp; policy</a>
+          </span>
+        </label>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="signup-btn mt-2 h-11 bg-[#fda029] text-white rounded-[10px] font-semibold text-[14px]"
+        >
+          Signup
+        </button>
+
+      </form>
+
+      <!-- Or divider -->
+      <div class="flex items-center gap-4 my-20">
+        <div class="flex-1 h-px bg-[#d9d9d9]"></div>
+        <span class="text-[13px] text-[#03081f]/50 whitespace-nowrap">Or</span>
+        <div class="flex-1 h-px bg-[#d9d9d9]"></div>
+      </div>
+
+      <!-- Social buttons -->
+      <div class="flex gap-3">
+        <button class="social-btn flex-1 flex items-center justify-center gap-2.5 h-11 border border-[#d9d9d9] rounded-[10px] text-[13px] font-medium text-[#03081f]">
+          <img src="GoogleIcon.png" alt="Google" class="w-5 h-5 object-contain" />
+          Sign in with Google
+        </button>
+        <button class="social-btn flex-1 flex items-center justify-center gap-2.5 h-11 border border-[#d9d9d9] rounded-[10px] text-[13px] font-medium text-[#03081f]">
+          <img src="AppleIcon.png" alt="Apple" class="w-5 h-5 object-contain" />
+          Sign in with Apple
+        </button>
+      </div>
+
+      <!-- Sign in link -->
+      <p class="text-center text-[13px] text-[#03081f] mt-6">
+        Have an account?
+        <a routerLink="/login" class="text-[#0f3dde] font-medium ml-1">Sign In</a>
+      </p>
+
     </div>
   </div>
 
-  <div class="w-1/2 h-full rounded-l-[45px] overflow-hidden">
-      <img 
-        src="LibraryImage.jpg" 
-        class="w-full h-full object-cover"
-      />
-    </div>
+  <div class="hidden lg:block lg:w-[50%] h-screen sticky top-0">
+    <img
+      src="LibraryImage.jpg"
+      alt="Library"
+      class="w-full h-full object-cover rounded-tl-[45px] rounded-bl-[45px]"
+    />
+  </div>
 </div>
-
-
-<!-- 
- <div class="flex flex-col gap-2 border-2 rounded-md border-gray-700 bg-gray-50 p-2.5 w-72">
-    <div class="flex justify-center text-lg">Register</div>
-    <div class="flex flex-col gap-1">
-        <span> Login:</span>
-        <input class="border rounded-xs h-8 p-2"/>    
-    </div>
-    <div class="flex flex-col gap-1">
-        <span> Email:</span>
-        <input class="border rounded-xs h-8 p-2"/>
-    </div>
-        <div class="flex flex-col gap-1">
-        <span> Password:</span>
-        <input class="border rounded-xs h-8 p-2"/>
-    </div>
-    <div class="flex justify-between mt-3 gap-4">
-        <button class="bg-gray-500 rounded-xs w-full px-3 py-1.5 cursor-pointer hover:bg-gray-400 text-white">
-        Log in
-    </button>
-    <button class="bg-red-600 rounded-xs w-full px-3 py-1.5 cursor-pointer hover:bg-red-500 text-white">
-        Register
-    </button>
-    </div>
-</div>
--->

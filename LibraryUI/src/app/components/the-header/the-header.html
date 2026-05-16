@@ -1,10 +1,95 @@
-<div class="flex w-full h-55 bg-white shadow-md">
-    <div class="flex w-full px-40">
-        <div class="flex w-full bg-[#fafafa] h-17.5 border border-black/10 rounded-bl-xl rounded-br-xl justify-between">
-            <div class="flex"></div>
-            <div class="flex  w-full max-w-120 h-full bg-[#028643] border border-black/10 rounded-bl-xl rounded-br-xl">
+<header class="w-full bg-white shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)]">
 
-            </div>
+  <!-- ── TOP INFO BAR — lg+ only ── -->
+  <div class="mx-5 sm:mx-10 md:mx-14 lg:mx-20 xl:mx-28 hidden lg:block">
+    <div class="flex items-center h-14 bg-[#fafafa] rounded-b-xl overflow-hidden">
+
+      <!-- Promo (left) -->
+      <div class="flex flex-1 items-center gap-2 pl-8 min-w-0">
+        <span class="text-xl leading-none shrink-0">🌟</span>
+        <p class="text-[13px] text-black whitespace-nowrap truncate">
+          Get 5% Off your first order,
+          <strong class="text-[#fc8a06] underline">Promo: ORDER5</strong>
+        </p>
+      </div>
+
+      <!-- Location (center) -->
+      <div class="flex items-center gap-1.5 px-6 shrink-0">
+        <img [src]="locationIcon" alt="" class="size-4 object-contain" />
+        <span class="font-medium text-[13px] text-[#03081f] whitespace-nowrap">Central Library</span>
+        <a href="#" class="font-medium text-[13px] text-[#fc8a06] underline ml-2 whitespace-nowrap">Change Location</a>
+      </div>
+
+      <!-- Basket panel (right, green) -->
+      <div class="flex items-center h-full bg-[#028643] rounded-b-xl shrink-0 px-5">
+        <img [src]="basketIcon" alt="Basket" class="w-9 h-7 object-contain" />
+        <div class="self-stretch w-px bg-white/30 mx-3"></div>
+        <span class="font-semibold text-[13px] text-white whitespace-nowrap">5 Publications</span>
+        <div class="self-stretch w-px bg-white/30 mx-3"></div>
+        <span class="font-semibold text-[13px] text-white whitespace-nowrap">15 PLN</span>
+        <div class="self-stretch w-px bg-white/30 mx-3"></div>
+        <div class="rotate-90 ml-2">
+          <img [src]="forwardIcon" alt="" class="w-6 h-7 object-contain" />
         </div>
+      </div>
+
     </div>
-</div>
+  </div>
+
+  <!-- ── MAIN NAV ── -->
+  <div class="px-5 sm:px-10 md:px-14 lg:px-20 xl:px-28">
+
+    <!-- Single row: logo + inline search (sm+) + nav/login -->
+    <div class="flex items-center gap-4 lg:gap-6 h-20 sm:h-24 md:h-32 lg:h-37.5">
+
+      <!-- Logo (gradual scale) -->
+      <img [src]="logo" alt="LibraryHub"
+        class="h-11.5 sm:h-17.5 md:h-25.5 lg:h-34.5 max-w-36 sm:max-w-52 md:max-w-64 lg:max-w-76 w-auto object-contain shrink-0" />
+
+      <!-- Search bar — inline on sm+, hidden on mobile -->
+      <div class="flex-1 hidden sm:flex justify-center min-w-0">
+        <div class="relative w-full max-w-132.5">
+          <div class="flex items-center h-10 bg-[#fafafa] rounded-full pl-5 pr-25">
+            <input
+              type="text"
+              placeholder="Enter a title, author or ISBN to find your next read"
+              class="w-full bg-transparent text-[13px] text-[#03081f] outline-none placeholder:text-[#03081f]/60"
+            />
+          </div>
+          <button class="search-btn absolute right-0 top-0 bg-[#fda029] rounded-full h-10 w-24 text-white font-bold text-[14px]">
+            Search
+          </button>
+        </div>
+      </div>
+
+      <!-- Nav links + Login -->
+      <div class="ml-auto sm:ml-0 shrink-0 flex items-center gap-5 lg:gap-7">
+        <a href="#" class="font-medium text-[15px] text-[#03081f] whitespace-nowrap nav-link hidden xl:block">Libraries</a>
+        <a href="#" class="font-medium text-[15px] text-[#03081f] whitespace-nowrap nav-link hidden xl:block">My borrowings</a>
+        <button routerLink="/register" class="login-btn flex items-center gap-2 bg-[#03081f] text-white rounded-full h-11 px-5 lg:px-6 font-medium text-[14px] lg:text-[15px] whitespace-nowrap shrink-0">
+          <img [src]="userIcon" alt="" class="w-5 h-4.5 object-contain" />
+          <span class="hidden sm:inline">Login/Signup</span>
+          <span class="sm:hidden">Login</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Search bar — full-width row on mobile only -->
+    <div class="sm:hidden pb-4">
+      <div class="relative w-full">
+        <div class="flex items-center h-10 bg-[#fafafa] rounded-full pl-5 pr-25">
+          <input
+            type="text"
+            placeholder="Search by title, author or ISBN..."
+            class="w-full bg-transparent text-[13px] text-[#03081f] outline-none placeholder:text-[#03081f]/60"
+          />
+        </div>
+        <button class="search-btn absolute right-0 top-0 bg-[#fda029] rounded-full h-10 w-24 text-white font-bold text-[14px]">
+          Search
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>
